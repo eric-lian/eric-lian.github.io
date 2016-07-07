@@ -51,9 +51,9 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -63,6 +63,89 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-markdown" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/07/markdown/" class="article-date">
+  <time datetime="2016-07-07T10:02:33.000Z" itemprop="datePublished">2016-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/07/markdown/">献给新手的 Markdown 的使用指南</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="标题使用："><a href="#标题使用：" class="headerlink" title="标题使用："></a>标题使用：</h2><p>标题的使用方法是 #+空格+标题 ，使用几级标题就在空格前面加上几个# ,最多支持到6级标题<br>注 ：#和标题之间一定要有空格</p>
+<h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="列表的使用"><a href="#列表的使用" class="headerlink" title="列表的使用"></a>列表的使用</h2><p>无序列表使用星号、加号或是减号作为列表标记<br>列表的使用可以 - + 空格 + 列表<br>无序列表</p>
+<ul>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表3</li>
+</ul>
+<p>有序列表 </p>
+<ol>
+<li>列表1</li>
+<li>列表2</li>
+<li>列表3</li>
+</ol>
+<p>列表项目可以包含多个段落，每个项目下的段落都必须缩进 4 个空格或是 1 个制表符：</p>
+<ol>
+<li><p>This is a list item with two paragraphs. Lorem ipsum dolor<br>sit amet, consectetuer adipiscing elit. Aliquam hendrerit<br>mi posuere lectus.</p>
+<p>Vestibulum enim wisi, viverra nec, fringilla in, laoreet<br>vitae, risus. Donec sit amet nisl. Aliquam semper ipsum<br>sit amet velit.</p>
+</li>
+<li><p>Suspendisse id sem consectetuer libero luctus adipiscing.</p>
+</li>
+</ol>
+<p>插入链接和插入图片</p>
+<p>插入链接使用 [显示文本] (链接地址) 例如：<br><a href="www.baidu.com">简书</a><br>插入图片使用 ! + [] + (图片的地址)<br><img src="图片的地址" alt=""></p>
+<p>引用别人的文字： &gt; + 文字</p>
+<blockquote>
+<p>举头望明月，低头思故乡 </p>
+</blockquote>
+<h2 id="粗体和斜体"><a href="#粗体和斜体" class="headerlink" title="粗体和斜体"></a>粗体和斜体</h2><p>Markdown 中 用两个<em> 包含一段的是粗体语法，用一个</em>包含的是斜体语法 例如：</p>
+<blockquote>
+<p><strong> 举头望明月 </strong> ，<em> 低头思故乡 </em><br><strong> 南村老同气我老无力 </strong></p>
+</blockquote>
+<h2 id="表格："><a href="#表格：" class="headerlink" title="表格："></a>表格：</h2><p>使用| 内容|   |:——:| 用于控制内容显示方向<br>| private | default | protected | public |<br>|———:|:———:|———–|———–|<br>| 类        | bar      |     yes     |         te   |<br>| 包        |测试     |我就是测试小哥  |怎么样|<br>|全局|    哎呦      |不错呕     |德玛西亚|</p>
+<h2 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h2><blockquote>
+<p>使用四个空格或者一个制表符号</p>
+</blockquote>
+<pre><code>public class Test{
+    public static void main(String args[]){
+    System.out.println(&quot;这个是 markdown 实验&quot;);
+    }
+}
+</code></pre><p>4 &lt; 5</p>
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><blockquote>
+<p>使用多个*号代表分割线</p>
+<hr>
+</blockquote>
+<p>如果要标记一小段行内代码，你可以用反引号把它包起来（`），例如：</p>
+<p>A single backtick in a code span: <code> </code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/07/07/markdown/" data-id="ciqcfvae50000bpfygwbtxew8" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -99,7 +182,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/04/22/hello-world/" data-id="ciqc52l360000xms6be0e0bqg" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2016/04/22/hello-world/" data-id="ciqc54ao90000yns62dvem24l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -126,7 +209,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/04/">April 2016</a></li></ul>
     </div>
   </div>
 
@@ -134,9 +217,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/07/07/markdown/">献给新手的 Markdown 的使用指南</a>
+          </li>
         
           <li>
             <a href="/2016/04/22/hello-world/">Hello World</a>
@@ -155,7 +242,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2016 John Doe<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
