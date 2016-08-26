@@ -228,6 +228,145 @@
             
               
                 
+                <a class="post-title-link" href="/2016/08/26/untitled-1472177258163/" itemprop="url">
+                  Java持有引用之Reference对象
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-26T18:59:39+08:00" content="2016-08-26">
+              2016-08-26
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/26/untitled-1472177258163/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/26/untitled-1472177258163/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>自定义一个类</p>
+<pre><code>class Key {Reference类型
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        System.out.println(&quot;回收了&quot;+Thread.currentThread().getId());    
+    }
+}
+</code></pre><p>在Java中一般有两种引用类型:Reference类型 类型和普通引用类型<br> Reference 类型（都继承抽象 Reference 类）：</p>
+<ul>
+<li><p>SoftReference(软引用) </p>
+<pre><code>  ReferenceQueue referenceQueue= new ReferenceQueue&lt;&gt;();
+  Key key =  new Key();
+      SoftReference softReference=new SoftReference(key,referenceQueue);
+key = null;
+</code></pre><p>  <strong>当内存不足时，将会回收 Object 对象</strong></p>
+</li>
+<li>WeakReference(弱引用)<pre><code>ReferenceQueue referenceQueue= new ReferenceQueue&lt;&gt;();
+  Key key =  new Key();
+      WeakReference weakReference=new WeakReference(key,referenceQueue);
+key = null;
+System.gc();
+ **当 gc 每一次就行垃圾回收的时候，如果检测到 soft 类型的对象时，就会将 Object 回收.当执行完system.gc()后，能够看到 Key 对象finalize（）方法被调用,z证明对象被回收**
+</code></pre></li>
+<li><p>PhantomReference(虚引用) </p>
+<pre><code> ReferenceQueue referenceQueue= new ReferenceQueue&lt;&gt;();
+Key key =  new Key();
+ PhantomReference phantomReference= new PhantomReference(new key,referenceQueue);
+key = null;
+</code></pre><p>  <strong>PhantomReference一般用于调度回收前的清理的工作,只能依赖ReferenceQueue 一起使用.我们通过phantomReference.get()并不能得到Key 对象，只有对象被标记为不可达状态后（可以被回收），phantomReference 对象会被添加到referenceQueue队列中，当对象被垃圾回收起回收以后,phantomReference将会从队列中被移除</strong></p>
+</li>
+</ul>
+<p>普通引用类型： </p>
+<ul>
+<li>强引用类型  :Object obj = new Object() 当没有任何引用指向该Object 对象的时候，gc 才能回收该对象</li>
+</ul>
+<h3 id="ReferenceQueue"><a href="#ReferenceQueue" class="headerlink" title="ReferenceQueue"></a>ReferenceQueue</h3><p>在上面创建Reference对象的时候,我们看到都一个 referenceQueue对象,ReferenceQueue对象的主要用途是当softReference或者weakReference里的Key对象被垃圾回收器回收以后，softReference或者weakReference Reference对象会被添加到referenceQueue对类中，由于 Key 对象已经被回收，因此我们softReference或者weakReference.get()为 null.我们可以继承Reference类，为这个类添加一新的方法，比如添加一个被回收对象的名字或者得到回收对象的一些特性.</p>
+<h3 id="为什么需要-Reference-类？"><a href="#为什么需要-Reference-类？" class="headerlink" title="为什么需要 Reference 类？"></a>为什么需要 Reference 类？</h3><p>我们知道在我们的程序运行的时候,如果一个gc 想要回收一个对象，必须保证该对象没有任何引用指向此对象，否则gc不能成功回收该对象.如果我们既想拥有该对象，又想让垃圾回收器回收对象的时候能够回收该对象，那就需要使用Reference对象，Reference 对象可以看做是对我们对象的包装，可以通过 Reference.set()方法把对象”包裹进去”，当需要使用的时候通过 Reference.get()方法获取对象，当垃圾回收器进行垃圾回收时候，垃圾回收器能够根据不同类型的 Reference 派生类来决定是否回收 Reference 内包装的对象.</p>
+<h3 id="使用-Reference-场景和条件"><a href="#使用-Reference-场景和条件" class="headerlink" title="使用 Reference 场景和条件"></a>使用 Reference 场景和条件</h3><p>场景：我们希望继续对某个对象持有应用，并且希望gc能够在需要回收该对象时成功回收该对象.<br>条件：必须保证只能通过 Reference 获得该对象，其他任何普通引用都没有指向该对象.</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/07/07/markdown/" itemprop="url">
                   献给新手的 Markdown 的使用指南
                 </a>
@@ -395,7 +534,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">1</span>
+              <span class="site-state-item-count">2</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
